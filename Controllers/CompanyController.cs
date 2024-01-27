@@ -21,9 +21,9 @@ namespace BillManager.Controllers
 
         [HttpGet("all")]
         [Authorize]
-        public async Task<ResponseDTO> GetAll()
+        public async Task<ResponseDTO> GetAll([FromQuery] int page = 1, [FromQuery] int itemsPerPage = 10, [FromQuery] string searchKey = "")
         {
-            var result = await _companyService.GetAll();
+            var result = await _companyService.GetAll(page, itemsPerPage, searchKey);
             if (result != null)
             {
                 _responseDTO.IsSuccess = true;

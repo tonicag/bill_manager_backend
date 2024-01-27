@@ -56,7 +56,7 @@ namespace BillManager.Service
             var items = query.Skip((page - 1) * itemsPerPage)
                              .Take(itemsPerPage).Select(item => _mapper.Map<ProductDTO>(item))
                              .ToList();
-            return new PaginationDTO<ProductDTO> { Items = items, ItemsPerPage = itemsPerPage, Page = page, TotalPages = totalItems };
+            return new PaginationDTO<ProductDTO> { Items = items, ItemsPerPage = itemsPerPage, Page = page, TotalPages = totalItems != 0 ? (totalItems / itemsPerPage) + 1 : 0 };
         }
 
 
